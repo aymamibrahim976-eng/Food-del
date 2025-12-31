@@ -33,7 +33,7 @@
 .cursor{
     cursor: pointer;
      background-color: #fee2e2;
-    color: #ef4444;
+    color: #b61f04;
     border: none;
     width: 36px;
     height: 36px;
@@ -44,7 +44,7 @@
     font-size: 22px;
     cursor: pointer;
     transition: all 0.3s ease;
-    background-color: tomato;
+    background-color: #b61f04;
     color: white;
     transform: rotate(90deg);
      transform: scale(0.9);

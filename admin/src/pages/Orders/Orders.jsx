@@ -25,6 +25,7 @@ const Order = ({url}) => {
   }
 
   const statusHandler = async (event,orderId) =>{
+   
     const response = await axios.post(url+"/api/order/status",{
       orderId,
       status:event.target.value
@@ -64,7 +65,7 @@ const Order = ({url}) => {
               </div>
               <p className='order-item-phone'>{order.address.phone}</p>
             </div>
-            <p>Items : {order.items.lengh}</p>
+            <p>Items : {order.items.length}</p>
             <p>${order.amount}</p>
             <select onChange={(event)=>statusHandler(event,order._id)} value={order.status}>
               <option value="Food Processing">Food Processing</option>
