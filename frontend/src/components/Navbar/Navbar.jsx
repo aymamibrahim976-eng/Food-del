@@ -20,7 +20,7 @@ const Navbar = ({setShowLogin}) => {
     }
   return (
     <div className='navbar'>
-      <Link to ='/'><img src={assets.logo} alt="" className="logo" /></Link>
+      <Link to ='/'><img src={assets.logo2} alt="" className="logo2" /></Link>
       <ul className="navbar-menu">
         {/*  this is the logic of making the under line for each click  */}
         <Link to='/' onClick={()=>setMenu("home")}className={menu=== "home"?"active":""} >home</Link>

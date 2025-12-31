@@ -5,20 +5,75 @@ import { StoreContext } from "../../context/StoreContext";
 
 const FoodItem = ({ id, name, price, description, image }) => {
  
-  const {cartItems,addToCart,removeFromCart,url} = useContext(StoreContext);
+  // 🔴 تعديل هنا: وضع قيمة افتراضية لـ cartItems
+  // السبب: أحيانًا تكون undefined عند أول render
+  const {
+    cartItems = {}, // ← هذا السطر تمت إضافته
+    addToCart,
+    removeFromCart,
+    url
+  } = useContext(StoreContext);
+
   return (
     <div className="food-item">
       <div className="food-item-img-container">
-        <img className="food-item-image" src={url+"/images/"+image} alt="" />
-        {!cartItems[id]
-          ?<img className="add" onClick={()=>addToCart(id)} src={assets.add_icon_white} alt="" />
-          :<div className="food-item-counter">
-            <img onClick={()=> removeFromCart(id) } src={assets.remove_icon_red} alt="" />
-            <p>{cartItems[id]}</p>
-            <img onClick={()=> addToCart(id)} src={assets.add_icon_green} alt="" />
+        <img
+          className="food-item-image"
+          src={url + "/images/" + image}
+          alt=""
+        />
+
+        {/* 🔴 تعديل هنا: استخدام Optional Chaining */}
+        {!cartItems?.[id] ? ( // ← تم التعديل هنا
+          <img
+            className="add"
+            onClick={() => addToCart(id)}
+            src={assets.add_icon_white}
+            alt=""
+          />
+        ) : (
+          <div className="food-item-counter">
+            <img
+              onClick={() => removeFromCart(id)}
+              src={assets.remove_icon_red}
+              alt=""
+            />
+
+            {/* 🔴 تعديل هنا: قيمة افتراضية 0 */}
+            <p>{cartItems?.[id] || 0}</p> {/* ← تم التعديل هنا */}
+
+            <img
+              onClick={() => addToCart(id)}
+              src={assets.add_icon_green}
+              alt=""
+            />
+        {!cartItems?.[id] ? ( // ← تم التعديل هنا
+          <img
+            className="add"
+            onClick={() => addToCart(id)}
+            src={assets.add_icon_white}
+            alt=""
+          />
+        ) : (
+          <div className="food-item-counter">
+            <img
+              onClick={() => removeFromCart(id)}
+              src={assets.remove_icon_red}
+              alt=""
+            />
+
+            {/* 🔴 تعديل هنا: قيمة افتراضية 0 */}
+            <p>{cartItems?.[id] || 0}</p> {/* ← تم التعديل هنا */}
+
+            <img
+              onClick={() => addToCart(id)}
+              src={assets.add_icon_green}
+              alt=""
+            />
           </div>
-        }
+        )}
       </div>
+
       <div className="food-item-info">
         <div className="food-item-name-rating">
           <p>{name}</p>
